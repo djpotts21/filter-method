@@ -21,6 +21,11 @@ const people = [
   },
 ];
 
+const oldEnough = people.filter(person => person.age >= 21)
+console.log(oldEnough)
+
+const paulOnly = people.filter(p => p.name === 'Paul')[0]
+console.log(paulOnly)
 
 // Complex Filtering
 const students = [
@@ -55,3 +60,24 @@ const students = [
     ]
   },
 ];
+
+// complex filter no external function
+
+// const candidates = students.filter(student =>{
+//   let strongSkills = student.skills.filter(skill => skill.yrsExperience >= 5 )
+//   return strongSkills.length > 0;
+// })
+// console.log(candidates)
+
+// complex filter with external functions
+
+const hasFiveYrsExp = skill => skill.yrsExperience >= 5 
+
+const hasStrongSkills = student => student.skills.filter(hasFiveYrsExp).length > 0;
+
+const candidates = students.filter(hasStrongSkills)
+
+console.log(candidates)
+
+//Name only return using Map
+console.log(candidates.map(candidate => candidate.name))
